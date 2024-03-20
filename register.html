@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <center>
+            <h1><code>CODE INSIGHT ACADEMY</code></h1>
+
+            <fieldset>
+                <legend>Register And Start the Quiz</legend>
+                <br><br><br>
+                <input id="fname" class="fm" type="text" pattern="[A-Za-z]+" placeholder="First Name" required>
+                <input id="lname" class="fm" type="text" pattern="[A-Za-z]+" placeholder="Last Name" required><br><br><br>
+                <input id="email" class="fm" type="email" placeholder="Enter Your Email " required><br><br><br>
+                <input id="mobile" class="fm" type="text" pattern="[0-9]+" placeholder="Enter Your Mobile no." required maxlength="10"><br><br><br>
+                <input id="section" class="fm" type="text" pattern="[A-F]+" pattern="[a-f]+" placeholder="Enter Your Section in Capital" required><br>
+                <button onclick="postData()" class="bn632-hover bn19">Start Quiz</button>
+
+            </fieldset>
+
+        </center>
+    </div>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.question {
+    margin-bottom: 20px;
+}
+
+.options {
+    list-style-type: none;
+    padding: 0;
+}
+
+.options li {
+    margin-bottom: 10px;
+}
+
+.result {
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 10px;
+    }
+}
+
+.bn632-hover {
+    width: 160px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    margin: 20px;
+    height: 55px;
+    text-align: center;
+    border: none;
+    background-size: 300% 100%;
+    border-radius: 50px;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.bn632-hover:hover {
+    background-position: 100% 0;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.bn632-hover:focus {
+    outline: none;
+}
+
+
+
+.bn632-hover {
+    width: 160px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    margin: 20px;
+    height: 55px;
+    text-align: center;
+    border: none;
+    background-size: 300% 100%;
+    border-radius: 50px;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.bn632-hover:hover {
+    background-position: 100% 0;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.bn632-hover:focus {
+    outline: none;
+}
+
+.bn632-hover.bn19 {
+    background-image: linear-gradient( to right, #f5ce62, #e43603, #fa7199, #e85a19);
+    box-shadow: 0 4px 15px 0 rgba(229, 66, 10, 0.75);
+}
+
+#start {
+    border: 3px solid red;
+    height: 0.7cm;
+    width: 20%;
+}
+
+.fm {
+    margin-left: 1cm;
+    height: 30px;
+    width: 7cm;
+    border-radius: 10px;
+}
+
+.fm::placeholder {
+    font-weight: bold;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+}
+
+fieldset {
+    margin: 50px;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    border: none;
+}
+
+legend {
+    font-size: 25px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+    text-align: center;
+}
+
+body {
+    background: linear-gradient(to left, #14e33a, #2be3ca);
+}
+
+input {
+    margin-bottom: 20px;
+}
+
+label {
+    font-size: 20px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+form {
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url(cia1.png);
+}
+
+
+    </style>
+    <script>
+        function postData() {
+
+            data = {
+                "first_name": document.getElementById("fname").value,
+                "last_name": document.getElementById("lname").value,
+                "email": document.getElementById("email").value,
+                "mobile": document.getElementById("mobile").value,
+                "section": document.getElementById("section").value
+
+            }
+
+            url = "https://spiffy-cucurucho-83a6ca.netlify.app/.netlify/functions/api/quiz"
+
+            fetch(url, {
+                    method: "POST",
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(res => res.json())
+                .then(res => {
+                    window.location.href = 'index.html'
+                })
+
+        }
+    </script>
+</body>
+
+</html>

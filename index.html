@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+      
+</head>
+
+<body>
+    <section class="main">
+
+        <div class="container">
+            <div class="col">
+                <h3 id="questionBox">
+                    1) Lorem ipsum dolor sit amet, consectetur adipisicing elit Debitis?
+                </h3>
+            </div>
+            <div class="col box">
+                <input name="option" type="radio" id="first" value="a" required>
+                <label for="first">Testing 1</label>
+            </div>
+            <div class="col box">
+                <input name="option" type="radio" id="second" value="b" required>
+                <label for="second">Testing 2</label>
+            </div>
+            <div class="col box">
+                <input name="option" type="radio" id="third" value="c" required>
+                <label for="third">Testing 3</label>
+            </div>
+            <div class="col box">
+                <input name="option" type="radio" id="fourth" value="d" required>
+                <label for="fourth">Testing 4</label>
+            </div>
+            <button id="submit">Submit</button>
+        </div>
+
+    </section>
+</body>
+<style>
+    * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap');
+.main {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(24, 128, 207);
+}
+
+.container {
+    width: 35rem;
+    box-shadow: 0px 0px 5px grey;
+    display: flex;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    flex-direction: column;
+}
+
+.col {
+    text-align: justify;
+    padding: 15px;
+    width: 95%;
+}
+
+#submit {
+    width: 100%;
+    background-color: rgb(47, 8, 73);
+    transition: 0.5s;
+    color: white;
+    outline: none;
+    border: none;
+    font-size: 25px;
+    display: block;
+    padding: 10px;
+    cursor: pointer;
+}
+
+#submit:hover {
+    background-color: rgb(34, 6, 53);
+}
+
+.box {
+    box-shadow: 0px -1px 1px grey;
+    width: 100%;
+}
+</style>
+<script>
+const quizData = [
+{
+      "question": "What does HTML stand for?",
+      "options": ["Hypertext Markup Language", "Cascading Style Sheet", "Jason Object Notation", "Hyperlinks and Text Markup Language"],
+      "correct": "Hypertext Markup Language"
+    },
+    // {
+    //   "question": "Which HTML tag is used to define the structure of an HTML document?",
+    //   "options": ["<html>", "<head>", "<body>", "<title>"],
+    //   "correct": "<html>"
+    // },
+    // {
+    //   "question": "What is the correct HTML for creating a hyperlink?",
+    //   "options": ["<a href='url'>link text</a>", "<link href='url'>link text</link>", "<href='url'>link text</href>", "<a src='url'>link text</a>"],
+    //   "correct": "<a href='url'>link text</a>"
+    // },
+    // {
+    //   "question": "Which HTML element is used to define the title of a document?",
+    //   "options": ["<header>", "<title>", "<h1>", "<head>"],
+    //   "correct": "<title>"
+    // },
+    // {
+    //   "question": "What is the correct HTML for inserting a line break?",
+    //   "options": ["<lb>", "<break>", "<br>", "<linebreak>"],
+    //   "correct": "<br>"
+    // },
+    // {
+    //   "question": "Which attribute is used to specify that an input field must be filled out in HTML?",
+    //   "options": ["required", "placeholder", "validate", "mandatory"],
+    //   "correct": "required"
+    // },
+    // {
+    //   "question": "Which HTML tag is used to define an unordered list?",
+    //   "options": ["<ul>", "<ol>", "<li>", "<div>"],
+    //   "correct": "<ul>"
+    // },
+    // {
+    //   "question": "What is the correct way to add a comment in HTML?",
+    //   "options": ["<!-- This is a comment -->", "// This is a comment", "/* This is a comment */", "# This is a comment"],
+    //   "correct": "<!-- This is a comment -->"
+    // },
+    // {
+    //   "question": "Which HTML tag is used to define a table?",
+    //   "options": ["<table>", "<tr>", "<td>", "<th>"],
+    //   "correct": "<table>"
+    // },
+    // {
+    //   "question": "What does the HTML <q> tag do?",
+    //   "options": ["Defines a quotation", "Defines a block of code", "Defines a paragraph", "Defines an abbreviation"],
+    //   "correct": "Defines a quotation"
+    // },
+    // {
+    //   "question": "What is the correct HTML for inserting an image?",
+    //   "options": ["<img alt='MyImage'>image.jpg</img>", "<image src='image.jpg' alt='MyImage'>", "<img src='image.jpg' alt='MyImage'>", "<img href='image.jpg' alt='MyImage'>"],
+    //   "correct": "<img src='image.jpg' alt='MyImage'>"
+    // },
+    // {
+    //   "question": "Which HTML attribute specifies an alternate text for an image, if the image cannot be displayed?",
+    //   "options": ["src", "title", "alt", "link"],
+    //   "correct": "alt"
+    // },
+    // {
+    //   "question": "Which HTML element is used to define the footer for a document or a section?",
+    //   "options": ["<footer>", "<foot>", "<hfooter>", "<end>"],
+    //   "correct": "<footer>"
+    // },
+    // {
+    //   "question": "Which attribute is used to provide an advisory text about an element or its content in HTML?",
+    //   "options": ["advice", "title", "advisory", "tooltip"],
+    //   "correct": "title"
+    // },
+    // {
+    //   "question": "Which HTML element is used to define navigation links?",
+    //   "options": ["<nav>", "<navigate>", "<link>", "<next>"],
+    //   "correct": "<nav>"
+    // },
+    // {
+    //   "question": "What is the correct HTML for inserting a background image?",
+    //   "options": ["<background>image.jpg</background>", "<img src='image.jpg' background>", "<body style='background-image:url(image.jpg)'>", "<img background='image.jpg'>"],
+    //   "correct": "<body style='background-image:url(image.jpg)'>"
+    // },
+    // {
+    //   "question": "Which HTML attribute specifies the URL of the page the link goes to?",
+    //   "options": ["src", "link", "url", "href"],
+    //   "correct": "href"
+    // },
+    // {
+    //   "question": "What is the correct HTML for creating a checkbox?",
+    //   "options": ["<input type='check'>", "<checkbox>", "<input type='checkbox'>", "<check>"],
+    //   "correct": "<input type='checkbox'>"
+    // },
+    // {
+    //   "question": "Which attribute is used to provide an id for an HTML element?",
+    //   "options": ["class", "identifier", "id", "name"],
+    //   "correct": "id"
+    // },
+    // {
+    //   "question": "Which HTML element is used to define important text?",
+    //   "options": ["<strong>", "<bold>", "<important>", "<em>"],
+    //   "correct": "<strong>"
+    // },
+    // {
+    //   "question": "Which HTML tag is used to define a form?",
+    //   "options": ["<form>", "<input>", "<button>", "<select>"],
+    //   "correct": "<form>"
+    // },
+    // {
+    //   "question": "What is the correct HTML for creating a dropdown list?",
+    //   "options": ["<select>", "<dropdown>", "<list>", "<option>"],
+    //   "correct": "<select>"
+    // },
+    // {
+    //   "question": "Which HTML element is used to define a paragraph?",
+    //   "options": ["<p>", "<paragraph>", "<para>", "<text>"],
+    //   "correct": "<p>"
+    // },
+    // {
+    //   "question": "What is the correct HTML for creating an email link?",
+    //   "options": ["<a href='mailto:email@example.com'>Email Us</a>", "<mail href='email@example.com'>Email Us</mail>", "<email href='mailto:email@example.com'>Email Us</email>", "<link href='email@example.com'>Email Us</link>"],
+    //   "correct": "<a href='mailto:email@example.com'>Email Us</a>"
+    // },
+    // {
+    //   "question": "Which attribute is used to provide additional information about an element in HTML?",
+    //   "options": ["info", "details", "extras", "title"],
+    //   "correct": "title"
+    // },
+    // {
+    //   "question": "What does the HTML < hr > tag represent?",
+    //   "options": ["Horizontal Rule", "Header", "Hyperlink Reference", "High Resolution"],
+    //   "correct": "Horizontal Rule"
+    // },
+    // {
+    //   "question": "Which HTML element is used to define the header of a document or a section?",
+    //   "options": ["<header>", "<head>", "<h1>", "<title>"],
+    //   "correct": "<header>"
+    // },
+    // {
+    //   "question": "What is the correct HTML for creating a numbered list?",
+    //   "options": ["<ol>", "<ul>", "<li>", "<list>"],
+    //   "correct": "<ol>"
+    // },
+    // {
+    //   "question": "Which HTML element is used to define the largest heading?",
+    //   "options": ["<h1>", "<head>", "<heading>", "<large>"],
+    //   "correct": "<h1>"
+    // },
+    // {
+    //   "question": "What is the correct HTML for inserting an email address?",
+    //   "options": ["<mail>", "<email>", "<a href='mailto:email@example.com'>Email Us</a>", "<link href='email@example.com'>Email Us</link>"],
+    //   "correct": "<a href='mailto:email@example.com'>Email Us</a>"
+    // },
+    // {
+    //   "question": "Which attribute is used to provide a description of the content of a data cell in HTML?",
+    //   "options": ["description", "tooltip", "title", "details"],
+    //   "correct": "title"
+    // },
+    // {
+    //   "question": "What does the HTML <em> tag do?",
+    //   "options": ["Defines emphasized text", "Defines a paragraph", "Defines a link", "Defines a list"],
+    //   "correct": "Defines emphasized text"
+    // },
+    // {
+    //   "question": "Which HTML element is used to define the main content of a document?",
+    //   "options": ["<content>", "<body>", "<main>", "<article>"],
+    //   "correct": "<main>"
+    // },
+    // {
+    //   "question": "What is the correct HTML for creating a subscript?",
+    //   "options": ["<sub>", "<sup>", "<subscript>", "<s>"],
+    //   "correct": "<sub>"
+    // },
+    // {
+    //   "question": "Which attribute is used to specify the width of a table border in HTML?",
+    //   "options": ["border-width", "table-border", "border", "border-size"],
+    //   "correct": "border"
+    // },
+    // {
+    //   "question": "What is the correct HTML for inserting a copyright symbol?",
+    //   "options": ["&copy;", "&copy", "&(c)", "&#169;"],
+    //   "correct": "&copy;"
+    // },
+    // {
+    //   "question": "Which HTML element is used to define the footer for a document or a section?",
+    //   "options": ["<footer>", "<foot>", "<hfooter>", "<end>"],
+    //   "correct": "<footer>"
+    // },
+    // {
+    //   "question": "What is the correct HTML for creating a superscript?",
+    //   "options": ["<sup>", "<sub>", "<super>", "<s>"],
+    //   "correct": "<sup>"
+    // },
+    // {
+    //   "question": "Which HTML element is used to define a division or a section in an HTML document?",
+    //   "options": ["<section>", "<div>", "<division>", "<part>"],
+    //   "correct": "<div>"
+    // },
+    {
+      "question": "What is the correct HTML for creating a button?",
+      "options": ["<button>", "<btn>", "<input type='button'>", "<submit>"],
+      "correct": "<button>"
+    }
+];
+
+// Shuffle function to randomize the order of options
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+quizData.forEach(question => {
+    question.options = shuffle(question.options);
+});
+
+let index = 0;
+let correct = 0,
+    incorrect = 0,
+    total = quizData.length;
+let questionBox = document.getElementById("questionBox");
+let allInputs = document.querySelectorAll("input[type='radio']");
+
+const loadQuestion = () => {
+    if (total === index) {
+        return quizEnd()
+    }
+    reset()
+    const data = quizData[index]
+    questionBox.innerHTML = `${index + 1}) ${data.question}`
+    allInputs.forEach((input, i) => {
+        input.nextElementSibling.innerText = data.options[i];
+    });
+}
+
+document.querySelector("#submit").addEventListener(
+    "click",
+    function() {
+        const data = quizData[index]
+        const ans = getAnswer()
+        if (ans === data.correct) {
+            correct++;
+        } else {
+            incorrect++;
+        }
+        index++;
+        loadQuestion()
+    }
+)
+
+const getAnswer = () => {
+    let ans;
+    allInputs.forEach(
+        (inputEl) => {
+            if (inputEl.checked) {
+                ans = inputEl.nextElementSibling.innerText;
+            }
+        }
+    )
+    return ans;
+}
+
+const reset = () => {
+    allInputs.forEach(
+        (inputEl) => {
+            inputEl.checked = false;
+        }
+    )
+}
+
+const quizEnd = () => {
+    document.getElementsByClassName("container")[0].innerHTML = `
+        <div class="col">
+            <h3 class="w-100"> Hii, you've scored ${correct} / ${total} </h3>
+            <button onclick="location.href='index.html'">Replay</button>
+            <button onclick="location.href='ciablog.html'">Exit</button>
+        </div>
+    `
+}
+loadQuestion(index);
+
+</script>
+</html>
+
+
